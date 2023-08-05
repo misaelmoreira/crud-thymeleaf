@@ -14,49 +14,23 @@
         <div class="container-fluid">
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h4 class="text-themecolor">Profissionais</h4>
-                </div> 
-                <div class="col-md-7 align-self-center text-end">
-                    <div class="d-flex justify-content-end align-items-center">
-                        <a type="button" href="/profissionais/novo" class="btn btn-info d-none d-lg-block m-l-15 text-white">
-                            <i class="fa fa-plus-circle"></i>
-                            Novo Profissional
-                        </a>
-                    </div>
-                </div>              
+                    <h4 class="text-themecolor">Novo Profissional</h4>
+                </div>                            
             </div>
 
             <div class="row">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Obervação</th>
-                            <th scope="col">Data Criação</th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr data-th-each="profissional : ${profissionais}">
-                            <td data-th-text="${profissional.id}">...</td>
-                            <td data-th-text="${profissional.nome}">...</td>
-                            <td data-th-text="${profissional.observacao}">...</td>
-                            <td data-th-text="${profissional.dataCriacao}">...</td>
-                            <td class="table-action">
-                                <a href="#formCadastro" class="btn btn-warning">
-                                    Alterar
-                                </a>
-                            </td>
-                            <td class="table-action">
-                                <button class="btn btn-danger">
-                                    Excluir
-                                </button>
-                            </td>
-                        </tr>                   
-                    </tbody>
-                  </table>                
+                <form id="formCadastro" >
+                    <fieldset>
+                      <legend>Profissional:</legend>
+                      <input type="hidden" id="id" name="id">
+                      <label for="nome">Nome:</label>
+                      <input type="text" id="nome" name="nome"><br><br>
+                      <label for="observacao">Observação:</label>
+                      <textarea id="observacao" name="observacao"> </textarea><br><br>
+          
+                      <input type="submit" class="btn btn-primary" value="Enviar">
+                    </fieldset>
+                  </form>         
             </div>
             <!-- ============================================================== -->
             <!-- Right sidebar -->
