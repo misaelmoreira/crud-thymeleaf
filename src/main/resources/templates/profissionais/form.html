@@ -2,12 +2,13 @@
 <html lang="en">
 
 <head th:replace="shareds/head"></head>
+
 <body class="skin-blue fixed-layout">
-    <div th:replace="shareds/preloader"></div>      
+    <div th:replace="shareds/preloader"></div>
 
     <div id="main-wrapper">
-        <header th:replace="shareds/header"></header>     
-        <aside th:replace="shareds/aside"></aside> 
+        <header th:replace="shareds/header"></header>
+        <aside th:replace="shareds/aside"></aside>
     </div>
 
     <div class="page-wrapper" style="min-height: 463px;">
@@ -15,22 +16,51 @@
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
                     <h4 class="text-themecolor">Novo Profissional</h4>
-                </div>                            
+                </div>
             </div>
 
             <div class="row">
-                <form id="formCadastro" >
+                <form id="formCadastro" th:attr="action=|${action}|" method="post">
                     <fieldset>
-                      <legend>Profissional:</legend>
-                      <input type="hidden" id="id" name="id">
-                      <label for="nome">Nome:</label>
-                      <input type="text" id="nome" name="nome"><br><br>
-                      <label for="observacao">Observação:</label>
-                      <textarea id="observacao" name="observacao"> </textarea><br><br>
-          
-                      <input type="submit" class="btn btn-primary" value="Enviar">
+                        <legend>Profissional:</legend>
+                        <input type="hidden" id="id" name="id">
+
+                        <div th:if="${profissional}">
+                            <label for="nome">
+                                Nome:
+                            </label>
+                            <input type="text" id="nome" name="nome" th:attr="value=|${profissional.nome}|">
+                            <br>
+                            <br>
+                            <label for="observacao">
+                                Observação:
+                            </label>
+                            <textarea id="observacao" name="observacao" th:text="${profissional.observacao}"></textarea>
+                            <br>
+                            <br>
+                        </div>
+                        <div th:unless="${profissional}">
+                            <label for="nome">
+                                Nome:
+                            </label>
+                            <input type="text" id="nome" name="nome">
+                            <br>
+                            <br>
+                            <label for="observacao">
+                                Observação:
+                            </label>
+                            <textarea id="observacao" name="observacao"></textarea>
+                            <br>
+                            <br>
+                        </div>
+
+                        <div th:if="${erro}">
+                            <div class="alert alert-danger" role="alert" th:text="${erro}"></div>
+                        </div>
+
+                        <input type="submit" class="btn btn-primary" value="Enviar">
                     </fieldset>
-                  </form>         
+                </form>
             </div>
             <!-- ============================================================== -->
             <!-- Right sidebar -->
@@ -116,9 +146,10 @@
             </div>
         </div>
     </div>
-    
-    <footer th:replace="shareds/footer"></footer> 
 
-    <scripts th:replace="shareds/scripts"></scripts>     
+    <footer th:replace="shareds/footer"></footer>
+
+    <scripts th:replace="shareds/scripts"></scripts>
 </body>
+
 </html>
